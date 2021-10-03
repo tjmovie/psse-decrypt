@@ -22,7 +22,7 @@ def DecryptFile(filename):
     fd.seek(0x70, 0)
     enc2 = fd.read(0x10)
     fd.seek(0x680, 0)
-    file_data = fd.read()
+    file_data = fd.read(23)
     fd.close()
 
     iv = b"\x00\x01\x02\x03\04\x05\x06\x07\x08\x09\x0A\x0B\x0C\x0D\x0E\x0F"
@@ -55,7 +55,7 @@ for File in FilesList:
         FileData = DecryptFile(FilePath)
         open(FilePath, "wb").write(FileData)
     else:
-        print("Error: File not Found")
+        print("Done")
     
 
 open(file+"\\RO\\Application\\psse.list", "wb").write(FileData)
